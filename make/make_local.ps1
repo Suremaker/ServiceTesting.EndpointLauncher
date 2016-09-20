@@ -1,0 +1,1 @@
+make\make.ps1 -t build

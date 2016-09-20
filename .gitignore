@@ -1,0 +1,16 @@
+bin
+obj
+release
+debug
+*.suo
+packages
+reports
+svc_reports
+_ReSharper*
+*.user
+*.orig
+*.nupkg
+OpenCover
+*.log
+make/*_packages
+make/psmake.*
