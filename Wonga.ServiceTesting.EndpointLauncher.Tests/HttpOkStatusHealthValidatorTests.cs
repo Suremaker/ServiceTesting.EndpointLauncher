@@ -15,13 +15,13 @@ namespace Wonga.ServiceTesting.EndpointLauncher.Tests
         private const string BaseUrl = "http://localhost:9744";
         private string StatusUrl = BaseUrl + "/status";
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _server = new MockedHttpServerBuilder().Build(BaseUrl);
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             _server.Dispose();
