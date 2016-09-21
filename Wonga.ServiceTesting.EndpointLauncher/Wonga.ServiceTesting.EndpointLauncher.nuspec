@@ -11,6 +11,7 @@
     <copyright>Copyright Wonga</copyright>
     <projectUrl>https://github.com/wongatech/ServiceTesting.EndpointLauncher</projectUrl>
     <licenseUrl>https://raw.githubusercontent.com/wongatech/ServiceTesting.EndpointLauncher/master/LICENSE</licenseUrl>
+    <tags>service integration acceptance testing process</tags>
   </metadata>
 </package>
 
