@@ -10,6 +10,7 @@
     <description>$description$</description>
     <copyright>Copyright Wonga</copyright>
     <projectUrl>https://github.com/wongatech/ServiceTesting.EndpointLauncher</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wongatech/ServiceTesting.EndpointLauncher/master/LICENSE</licenseUrl>
   </metadata>
 </package>
 
