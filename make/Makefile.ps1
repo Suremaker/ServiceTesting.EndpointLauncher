@@ -13,11 +13,7 @@ Define-Step -Name "Build solution" -Target "DEV,BUILD" -Body {
 Define-Step -Name "Tests" -Target "DEV,BUILD" -Body {
 	. (require 'psmake.mod.testing')
 
-	$NunitPackageVersion = '3.2.1'
-	$path = Fetch-Package 'NUnit.ConsoleRunner' $NunitPackageVersion
-	copy "appveyor_addins\*" "$path\tools" -force
-
-	Define-NUnit3Tests -GroupName 'Tests' -ReportName 'test-results' -TestAssembly '*\bin\Release\*.Tests.dll' -NUnitVersion $NunitPackageVersion -ReportFormat 'AppVeyor' `
+	Define-NUnit3Tests -GroupName 'Tests' -ReportName 'test-results' -TestAssembly '*\bin\Release\*.Tests.dll' `
 		| Run-Tests -EraseReportDirectory -ReportDirectory "reports"
 }
 
