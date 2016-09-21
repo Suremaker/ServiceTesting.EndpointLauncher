@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Wonga.ServiceTesting.EndpointLauncher")]
-[assembly: AssemblyDescription("An Console/Web Endpoint Launcher dedicated for service tests.")]
+[assembly: AssemblyDescription("The Wonga.ServiceTesting.EndpointLauncher that helps with starting and managing lifecycle of external processes used in tests.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Wonga")]
 [assembly: AssemblyProduct("Wonga.ServiceTesting.EndpointLauncher")]

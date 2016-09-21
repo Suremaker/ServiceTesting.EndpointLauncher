@@ -9,6 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright Wonga</copyright>
+    <projectUrl>https://github.com/wongatech/ServiceTesting.EndpointLauncher</projectUrl>
   </metadata>
 </package>
 
