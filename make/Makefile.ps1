@@ -19,7 +19,7 @@ Define-Step -Name "Test" -Target "DEV,BUILD" -Body {
 
 Define-Step -Name "Upload test results" -Target "BUILD" -Body {
 	$wc = New-Object 'System.Net.WebClient'
-	$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\reposts\test-results.xml))
+	$wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\reports\test-results.xml))
 }
 
 Define-Step -Name "Package" -Target "DEV,BUILD" -Body {
