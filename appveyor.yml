@@ -14,5 +14,7 @@ build_script:
 test: off
 
 artifacts:
+  - path: reports
+    name: Reports
   - path: '*.nupkg'
     name: Packages
