@@ -14,13 +14,22 @@ namespace Wonga.ServiceTesting.EndpointLauncher
     {
         private readonly List<Tuple<Func<ServiceEndpointLauncher, Process>, IEndpointHelathValidator>> _endpoints = new List<Tuple<Func<ServiceEndpointLauncher, Process>, IEndpointHelathValidator>>();
         private TimeSpan _launchDelay = TimeSpan.Zero;
-        private readonly ServiceEndpointLauncher _launcher = new ServiceEndpointLauncher();
         private uint _retries;
+        private ProcessWindowStyle _processWindowStyle = ProcessWindowStyle.Minimized;
+
+        /// <summary>
+        /// Specifies endpoint window style. By default it is Minimized.
+        /// </summary>
+        /// <param name="processWindowStyle">Window style.</param>
+        public FluentServiceLauncher SetEndpointsWindowStyle(ProcessWindowStyle processWindowStyle)
+        {
+            _processWindowStyle = processWindowStyle;
+            return this;
+        }
 
         /// <summary>
         /// Adds the endpoint launcher with the health validator that is used to validate the endpoint health.
         /// </summary>
-        /// <returns></returns>
         public FluentServiceLauncher AddEndpoint(Func<ServiceEndpointLauncher, Process> endpointLauncher, IEndpointHelathValidator healthValidator)
         {
             _endpoints.Add(Tuple.Create(endpointLauncher, healthValidator));
@@ -75,9 +84,10 @@ namespace Wonga.ServiceTesting.EndpointLauncher
 
         private void StartEndpoints(List<ServiceEndpoint> endpoints)
         {
+            var launcher = new ServiceEndpointLauncher(_processWindowStyle);
             foreach (var e in _endpoints)
             {
-                endpoints.Add(new ServiceEndpoint(() => e.Item1.Invoke(_launcher), e.Item2));
+                endpoints.Add(new ServiceEndpoint(() => e.Item1.Invoke(launcher), e.Item2));
                 Thread.Sleep(_launchDelay);
             }
         }
@@ -106,7 +116,7 @@ namespace Wonga.ServiceTesting.EndpointLauncher
         private void ValidateStarted(ServiceEndpoint endpoint)
         {
             uint attempt = 0;
-            while(true)
+            while (true)
             {
                 try
                 {

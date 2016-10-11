@@ -1,0 +1,8 @@
+2.1.0
+-------
+New: Added FluentServiceLauncher.SetEndpointsWindowStyle() to control how child processes are being created
+Change: Child processes are created now with UseShellExecute=true
+
+2.0.0
+-------
+Initial release

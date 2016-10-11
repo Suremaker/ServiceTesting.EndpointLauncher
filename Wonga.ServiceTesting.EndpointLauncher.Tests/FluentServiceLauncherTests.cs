@@ -115,5 +115,29 @@ namespace Wonga.ServiceTesting.EndpointLauncher.Tests
 
             Assert.That(ex.InnerException.Message, Is.EqualTo(string.Format("Process '{0} /T 0' stopped unexpectedly with error code: 0", TimeoutPath)));
         }
+
+        [Test]
+        [TestCase(ProcessWindowStyle.Minimized)]
+        [TestCase(ProcessWindowStyle.Maximized)]
+        [TestCase(ProcessWindowStyle.Normal)]
+        public void FluentServiceLauncher_should_start_processes_with_proper_window_style(ProcessWindowStyle expectedState)
+        {
+            var endpoints = new FluentServiceLauncher()
+                .AddEndpoint(l => l.LaunchApplication(TimeoutPath, "/T 5"), new ProcessWaitHealthValidator(TimeSpan.FromSeconds(1)))
+                .SetEndpointsWindowStyle(expectedState)
+                .LaunchAll();
+
+            Assert.That(endpoints.Single().Process.StartInfo.WindowStyle, Is.EqualTo(expectedState));
+        }
+
+        [Test]
+        public void FluentServiceLauncher_should_start_processes_within_a_shell()
+        {
+            var endpoints = new FluentServiceLauncher()
+                .AddEndpoint(l => l.LaunchApplication(TimeoutPath, "/T 5"), new ProcessWaitHealthValidator(TimeSpan.FromSeconds(1)))
+                .LaunchAll();
+
+            Assert.That(endpoints.Single().Process.StartInfo.UseShellExecute, Is.True);
+        }
     }
 }

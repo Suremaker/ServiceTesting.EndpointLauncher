@@ -6,6 +6,17 @@ namespace Wonga.ServiceTesting.EndpointLauncher
 {
     public class ServiceEndpointLauncher
     {
+        private readonly ProcessWindowStyle _childProcessWindowStyle;
+
+        /// <summary>
+        /// Initializes ServiceEndpointLauncher.
+        /// </summary>
+        /// <param name="childProcessWindowStyle">Window style of child processes. By default it would be Minimized.</param>
+        public ServiceEndpointLauncher(ProcessWindowStyle childProcessWindowStyle = ProcessWindowStyle.Minimized)
+        {
+            _childProcessWindowStyle = childProcessWindowStyle;
+        }
+
         /// <summary>
         /// Starts a console or windows application with specified parameters and enables parent-child process watch for it, guaranteeing that created process would be terminated after current process finish.
         /// 
@@ -38,7 +49,7 @@ namespace Wonga.ServiceTesting.EndpointLauncher
             var childProcess = Process.Start(new ProcessStartInfo(Path.GetFullPath(exePath), args)
             {
                 WorkingDirectory = Path.GetFullPath(workingDirectory),
-                UseShellExecute = false
+                WindowStyle = _childProcessWindowStyle
             });
 
             Process.Start(new ProcessStartInfo("Wonga.ServiceTesting.ProcessWatch.exe", string.Format("{0} {1}", Process.GetCurrentProcess().Id, childProcess.Id)) { WindowStyle = ProcessWindowStyle.Hidden });
