@@ -16,14 +16,12 @@ namespace Wonga.ServiceTesting.EndpointLauncher.Validators
         public static readonly TimeSpan DefaultWaitTime = TimeSpan.FromSeconds(10);
         public static readonly TimeSpan DefaultPollInterval = TimeSpan.FromMilliseconds(200);
         private readonly TimeSpan _pollInterval;
-        private readonly HttpWebRequest _webRequest;
 
         public HttpOkStatusHealthValidator(string statusUrl, TimeSpan maxWaitTime, TimeSpan pollInterval)
         {
             _statusUrl = statusUrl;
             _maxWaitTime = maxWaitTime;
             _pollInterval = pollInterval;
-            _webRequest = (HttpWebRequest)WebRequest.Create(_statusUrl);
         }
 
         public HttpOkStatusHealthValidator(string statusUrl) : this(statusUrl, DefaultWaitTime, DefaultPollInterval)
@@ -47,7 +45,8 @@ namespace Wonga.ServiceTesting.EndpointLauncher.Validators
         {
             try
             {
-                return ((HttpWebResponse)_webRequest.GetResponse()).StatusCode == HttpStatusCode.OK;
+                var response = (HttpWebResponse)WebRequest.Create(_statusUrl).GetResponse();
+                return response.StatusCode == HttpStatusCode.OK;
             }
             catch
             {
