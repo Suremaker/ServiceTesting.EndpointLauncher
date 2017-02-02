@@ -1,6 +1,6 @@
 # ServiceTesting.EndpointLauncher
 
-* Build status: [![Build status](https://ci.appveyor.com/api/projects/status/v73q764yppc82t8b?svg=true)](https://ci.appveyor.com/project/Suremaker/servicetesting-endpointlauncher)
+* [![Build status](https://ci.appveyor.com/api/projects/status/cu4y8yeel3opg7y9/branch/master?svg=true)](https://ci.appveyor.com/project/wongatech-platformengineering/servicetesting-endpointlauncher/branch/master)
 * Nuget package: [Wonga.ServiceTesting.EndpointLauncher](https://www.nuget.org/packages/Wonga.ServiceTesting.EndpointLauncher/)
 
 
